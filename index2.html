@@ -8,28 +8,6 @@
   <!-- 图标 -->
   <link rel="shortcut icon" href="./images/favicon.ico" />
   <style>
-    /* 底栏整体页面布局样式 */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #000000b6; /* 黑色背景，类似《我的世界》夜晚的风格 */
-  color: white; /* 文字颜色设为白色，以便在黑色背景上清晰显示 */
-}
-
-/* 《我的世界》风格黑色底栏样式 */
-.minecraft-footer {
-  background-color: #000000b6; /* 黑色底栏背景，与整体背景一致 */
-  padding: 20px; /* 底栏内边距，可根据需要调整 */
-  border-top: 1px solid #000000; /* 顶部添加一条深灰色边框，类似游戏中的分隔线效果 */
-  text-align: center; /* 文字居中显示 */
-}
-
-.minecraft-footer p {
-  margin: 0; /* 段落间距设为0，使声明内容紧凑显示 */
-  margin-bottom: 10px; /* 每个段落底部添加一点间距，避免过于紧凑 */
-  font-size: 14px; /* 字体大小，可根据喜好调整 */
-}
     /* 整体页面布局样式 */
     body {
       font-family: Arial, sans-serif;
@@ -62,6 +40,7 @@ body {
       height: 100vh;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 添加容器的阴影效果 */
     }
+
 /* 左边导航栏样式，添加阴影效果并设置为固定位置 */
 .left-nav {
     /* 使用木质纹理颜色作为背景，类似游戏中的木质建筑 */
@@ -82,7 +61,6 @@ body {
     padding: 20px;
     margin-left: 300px; /* 设置左边距为左侧导航栏的宽度，使其不被导航栏遮挡 */
 }
-
 .left-nav ul {
       list-style-type: none;
       padding: 0;
@@ -429,7 +407,7 @@ body {
       <!-- 用户信息栏（这里添加了登录注册按钮及私信按钮，显示当前登录用户状态） -->
       <div class="user-info-bar">
         <div>
-          <img src="images/user.gif" alt="头像" width="30" height="30">
+          <img src="./images/user.gif" alt="头像" width="30" height="30">
           <span id="current-user">未登录</span>
         </div>
         <div>
@@ -438,51 +416,19 @@ body {
           <button id="send-message-button" class="submit-button">私信</button>
         </div>
       </div>
-      <!-- 示例论坛板块：建筑与创意 -->
+      <!-- 论坛板块：游戏机制 -->
       <div class="forum-section">
-        <h2>NEWS!</h2>
+        <h2>游戏截图</h2>
+        <h4>作者DEV端的开发截图</h4>
         <ul class="post-list">
           <li>
-            <div class="post-title">【NEW Update!】MITE-ITN(Endless)B0.1.0版本发布</div>
-            <div class="post-actions">
-              <button class="like-button">👍 <span class="like-count">0</span></button>
-              <button class="favorite-button">⭐ <span class="favorite-count">0</span></button>
-            </div>
-            <div class="post-author-time">作者：[陌良Ya] 发布时间：[暂定]</div>
-            <p>404~</p>
-            <div class="post-details">
-              <p>404-</p>
-            </div>
+            <div class="post-title">--一些照片--</div>
+            <img src="./images/1.png" alt="一些照片" width="2560" height="1600">
+            <img src="./images/2.png" alt="一些照片" width="2560" height="1600">
+            <img src="./images/3.png" alt="一些照片" width="2560" height="1600">
+            <img src="./images/4.png" alt="一些照片" width="2560" height="1600">
+            <img src="./images/5.png" alt="一些照片" width="2560" height="1600">
+            <img src="./images/6.png" alt="一些照片" width="2560" height="1600">
+            <img src="./images/7.png" alt="一些照片" width="2560" height="1600">
           </li>
-          <li>
-            <div class="post-title">【材质】高版本（1.22）材质数据包</div>
-            <div class="post-actions">
-              <button class="like-button">👍 <span class="like-count">0</span></button>
-              <button class="favorite-button">⭐ <span class="favorite-count">0</span></button>
-            </div>
-            <div class="post-author-time">作者：[陌良Ya] 发布时间：[2024.12.1]</td>
-            <p>For MITE-ITN(Endless)的1.22材质包，改头换面！</p>
-            <div class="post-details">
-            <p>包位置：原文件夹</p>
-            </div>
-          </li>
-        <!-- 发帖区域（这里仅为前端模拟，实际发帖需后端处理数据） -->
-        <div class="post-create-reply">
-          <h3>发表新帖(施工中...)</h3>
-          <input type="text" class="input-field" placeholder="请输入帖子标题">
-          <textarea class="input-field" placeholder="请输入帖子内容"></textarea>
-          <button type="button" class="submit-button">发表帖子</button>
-        </span>
-      </div>
-      <li>
-        <div class="post-title">【爱发电】赞助作者</div>
-        <h2>可以前往爱发电适当赞助作者</h2>
-        <h3>众所周知：缺乏资金会导致作品断更</h3>
-        </div>
-      </li>
-      <!-- 底栏-->
-      <div class="minecraft-footer">
-        <h3>声明：本网页内容与《我的世界》游戏相关，MITE-ITN(Endless)魔改自MITE-extreme，在此特别感谢，本模组仅用于交流与分享，实际使用责任自行承担。</h3>
-        <h3>为了节省时间，网站代码部分由豆包所写</h3>
-      </div>
-      </ul>
+        </ul>
