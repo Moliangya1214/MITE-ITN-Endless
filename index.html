@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MITE-ITN(Endless)官方网站</title>
+  <style>
+    /* 整体页面布局样式 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      /* 设置类似《我的世界》草地方块纹理的背景图片，可自行准备合适的图片资源 */
+      background-image: url('minecraft_grass_texture.jpg');
+      background-size: cover;
+      background-repeat: repeat;
+      /* 初始透明度设置为0，后续通过动画使其渐显 */
+      opacity: 0;
+      /* 定义动画名称、持续时间、延迟时间、动画曲线和播放次数 */
+      animation: fadeInBackground 2s 0s ease-in-out forwards;
+    }
+
+    /* 定义背景渐显的动画 */
+    @keyframes fadeInBackground {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 容器，用于包含导航栏和主要内容区域，添加阴影效果 */
+.container {
+      display: flex;
+      height: 100vh;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 添加容器的阴影效果 */
+    }
+/* 左边导航栏样式，添加阴影效果并设置为固定位置 */
+.left-nav {
+    /* 使用木质纹理颜色作为背景，类似游戏中的木质建筑 */
+    background-color: #79501b;
+    color: white;
+    width: 250px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 为导航栏添加阴影效果 */
+    position: fixed; /* 添加这行代码使其固定 */
+    top: 0; /* 距离页面顶部的距离，这里设置为0，可根据需求调整 */
+    left: 0; /* 距离页面左侧的距离，这里设置为0，可根据需求调整 */
+    height: 200vh; /* 设置高度为视口高度，使其能占满整个屏幕高度 */
+}
+
+/* 主要内容区域样式，调整margin-left以避开左侧导航栏 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 300px; /* 设置左边距为左侧导航栏的宽度，使其不被导航栏遮挡 */
+}
+
+.left-nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+.left-nav ul li {
+      margin-bottom: 15px;
+    }
+
+.left-nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+.left-nav ul li a:hover {
+      color: #ccc;
+    }
+
+    /* 导航栏下拉菜单样式 */
+.left-nav ul li.dropdown {
+      position: relative;
+    }
+
+.left-nav ul li.dropdown:hover.dropdown-content {
+      display: block;
+    }
+
+.left-nav ul li.dropdown-content {
+      display: none;
+      position: absolute;
+      /* 使用更深的木质纹理颜色作为下拉菜单背景 */
+      background-color: #462d10;
+      min-width: 160px;
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+.left-nav ul li.dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.3s ease;
+    }
+
+.left-nav ul li.dropdown-content a:hover {
+      background-color: #553918;
+    }
+
+    /* 主要内容区域样式 */
+.main-content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    /* 论坛板块标题样式，添加阴影效果 */
+.forum-section {
+      border: 3px solid #5C7E70; /* 类似木头方块的颜色边框 */
+      background-color: #A0C49D; /* 淡绿色背景，类似草地方块颜色 */
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 为论坛板块添加阴影效果 */
+    }
+
+    /* 论坛板块标题文字样式 */
+.forum-section h2 {
+      color: #333;
+      margin-top: 0;
+    }
+
+    /* 论坛帖子列表样式 */
+.post-list {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    /* 帖子列表项样式，添加阴影效果 */
+.post-list li {
+      border: 1px solid #979696;
+      background-color: white;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      /* 让帖子列表项看起来像方块，设置圆角为0 */
+      border-radius: 0;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* 为帖子列表项添加更明显的阴影效果 */
+    }
+
+    /* 帖子标题样式 */
+.post-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #336699;
+      /* 鼠标悬停时标题颜色变为淡蓝色，类似游戏中选中方块的效果 */
+      transition: color 0.3s ease;
+    }
+
+.post-title:hover {
+      color: #87CEEB;
+    }
+
+    /* 帖子作者和时间样式 */
+.post-author-time {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    /* 用户信息栏样式（这里添加了登录注册按钮及私信按钮，显示当前登录用户状态） */
+.user-info-bar {
+      background-color: #336699;
+      color: white;
+      padding: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); /* 为用户信息栏添加阴影效果 */
+    }
+
+    /* 发帖和回复区域样式 */
+.post-create-reply {
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2nd line:   2px 4px rgba(0, 0, 0, 0.1);
+      /* 让输入框和按钮所在区域看起来像方块，设置圆角为0 */
+      border-radius: 0;
+    }
+
+    /* 输入框样式 */
+.input-field {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      /* 让输入框看起来像方块，设置圆角为0 */
+      border-radius: 0;
+    }
+
+    /* 按钮样式，添加阴影效果 */
+.submit-button {
+      background-color: #787878; /* 灰色，类似石头颜色 */
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); /* 增加立体感，模拟方块的阴影 */
+      /* 鼠标悬停时按钮稍微变大，模拟游戏中鼠标悬停在方块上的突出效果 */
+      transition: transform 0.3s ease;
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3); /* 为按钮添加更明显的阴影效果 */
+    }
+
+.submit-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* 帖子详情展开收起样式 */
+.post-details {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+    }
+
+.post-list li:hover.post-details {
+      display: block;
+    }
+
+    /* 热门帖子标题特效样式 */
+.hot-post-title {
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+      }
+
+      to {
+        box-shadow: 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6, 0 0 40px #0073e6;
+      }
+    }
+
+    /* 雪花特效样式 */
+.snowflake {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    /* 夜晚模式样式 */
+.night-mode {
+      filter: brightness(0.5);
+      background-color: #111;
+    }
+
+    /* 点赞按钮样式及交互效果 */
+.like-button {
+      background-color: #ccc;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* 为点赞按钮添加阴影效果 */
+    }
+
+.like-button:hover {
+      background-color: #999;
+    }
+
+.like-button:active {
+      transform: scale(0.95);
+    }
+
+    /* 收藏按钮样式及交互效果 */
+.favorite-button {
+      background-color: #ccc;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* 为收藏按钮添加阴影效果 */
+    }
+
+.favorite-button:hover {
+      background-color: #999;
+    }
+
+.favorite-button:active {
+      transform: scale(0.95);
+    }
+
+    /* 模态框样式 */
+.modal {
+      display: none;
+      position: fixed;
+      z-index: 2;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+.modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 30%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+.close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+.close:hover,
+.close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* 黑暗主题样式类 */
+.dark-theme {
+      background-image: url('minecraft_dark_texture.jpg');
+      color: white;
+      /* 调整其他元素颜色以适应黑暗主题 */
+    .left-nav {
+          background-color: #222;
+          color: white;
+      }
+
+    .left-nav ul li a {
+          color: white;
+      }
+
+    .forum-section {
+          border: 3px solid #333;
+          background-color: #444;
+      }
+
+    .post-list li {
+          background-color: #333;
+          color: white;
+      }
+
+    .submit-button {
+          background-color: 555;
+      }
+
+    .hot-post-title {
+          box-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #fff, 0 0 35px #fff;
+      }
+    }
+
+    /* 当前页面导航项高亮样式 */
+.active {
+      background-color: #333;
+      border-radius: 4px;
+  }
+  </style>
+</head>
+
+<body>
+  <!-- 页面容器 -->
+  <div class="container">
+    <!-- 左边导航栏 -->
+    <div class="left-nav">
+        <ul>
+          <li><a href="./index.html" id="home-link">首页</a></li>
+          <li class="dropdown">
+            <a href="./index0.html" class="dropdown-toggle" id="game-mechanism-link">游戏机制</a>
+          </li>
+          <li class="dropdown">
+            <a href="adventure.html" class="dropdown-toggle" id="adventure-link">冒险与探索</a>
+            <div class="dropdown-content">
+              <a href="sub_adventure_1.html" id="sub-adventure-1-link">子冒险1</a>
+              <a href="sub_adventure_2.html" id="sub-adventure-2-link">子冒险2</a>
+              <a href="sub_adventure_3.html" id="sub-adventure-3-link">子冒险3</a>
+            </div>
+          </li>
+          <li><a href="game_setting.html" id="game-setting-link">游戏设定</a></li>
+          <li><a href="goblin_plugin.html" id="goblin-plugin-link">地精插件</a></li>
+          <li><a href="multiplayer.html" id="multiplayer-link">多人游戏(计划中)</a></li>
+          <li><a href="tutorial.html" id="tutorial-link">新手教程</a></li>
+          <li><a href="theme_toggle.html" id="theme-toggle-link">切换主题(实验性)</a></li>
+          <li><a href="https://space.bilibili.com/3494358871443830" id="about-author-link">关于作者</a></li>
+        </ul>
+      </div>
+    <!-- 主要内容区域 -->
+    <div class="main-content">
+      <!-- 用户信息栏（这里添加了登录注册按钮及私信按钮，显示当前登录用户状态） -->
+      <div class="user-info-bar">
+        <div>
+          <img src="images/user.gif" alt="头像" width="30" height="30">
+          <span id="current-user">未登录</span>
+        </div>
+        <div>
+          <button id="login-button" class="submit-button">登录</button>
+          <button id="register-button" class="submit-button">登出</button>
+          <button id="send-message-button" class="submit-button">私信</button>
+        </div>
+      </div>
+      <!-- 示例论坛板块：建筑与创意 -->
+      <div class="forum-section">
+        <h2>NEWS!</h2>
+        <ul class="post-list">
+          <li>
+            <div class="post-title">【NEW Update!】MITE-ITN(Endless)B0.1.0版本发布</div>
+            <div class="post-actions">
+              <button class="like-button">👍 <span class="like-count">0</span></button>
+              <button class="favorite-button">⭐ <span class="favorite-count">0</span></button>
+            </div>
+            <div class="post-author-time">作者：[陌良Ya] 发布时间：[暂定]</div>
+            <p>404~</p>
+            <div class="post-details">
+              <p>404-</p>
+            </div>
+          </li>
+          <li>
+            <div class="post-title">【材质】高版本（1.22）材质数据包</div>
+            <div class="post-actions">
+              <button class="like-button">👍 <span class="like-count">0</span></button>
+              <button class="favorite-button">⭐ <span class="favorite-count">0</span></button>
+            </div>
+            <div class="post-author-time">作者：[陌良Ya] 发布时间：[2024.12.1]</td>
+            <p>For MITE-ITN(Endless)的1.22材质包，改头换面！</p>
+            <div class="post-details">
+            <p>包位置：原文件夹</p>
+            </div>
+          </li>
+        <!-- 发帖区域（这里仅为前端模拟，实际发帖需后端处理数据） -->
+        <div class="post-create-reply">
+          <h3>发表新帖(施工中...)</h3>
+          <input type="text" class="input-field" placeholder="请输入帖子标题">
+          <textarea class="input-field" placeholder="请输入帖子内容"></textarea>
+          <button type="button" class="submit-button">发表帖子</button>
+        </span>
+      </div>
+      <li>
+        <div class="post-title">【爱发电】赞助作者</div>
+        <h2>可以前往爱发电适当赞助作者</h2>
+        <h3>众所周知：缺乏资金会导致作品断更</h3>
+        </div>
+      </li>
+      <!-- 施工中的功能-->
+      </ul>
