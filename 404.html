@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - 页面未找到</title>
+  <!-- 图标 -->
+  <link rel="shortcut icon" href="./images/favicon.ico" />
+  <style>
+    /* 整体页面布局样式 */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #7fbfff;
+      /* 类似《我的世界》天空的淡蓝色背景 */
+      overflow: hidden;
+      /* 隐藏页面滚动条，营造整体氛围 */
+    }
+
+    /* 《我的世界》风格的404页面容器样式 */
+  .minecraft-404-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        alignItems: center;
+        perspective: 800px;
+    }
+
+    /* 模拟《我的世界》天空的样式 */
+  .minecraft-sky {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50vh;
+        background-color: #7fbfff;
+        /* 淡蓝色天空 */
+        z-index: -2;
+        transform-style: preserve-3d;
+        animation: skyAnimation 60s linear infinite;
+    }
+
+    @keyframes skyAnimation {
+        0% {
+            background-color: #000033;
+        }
+
+        20% {
+            background-color: #333366;
+        }
+
+        40% {
+            background-color: #666699;
+        }
+
+        60% {
+            background-color: #9999cc;
+        }
+
+        80% {
+            background-color: #ccccff;
+        }
+
+        100% {
+            background-color: #000033;
+        }
+    }
+
+    /* 模拟《我的世界》地面的样式 */
+  .minecraft-ground {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50vh;
+        background-color: #333333;
+        /* 深灰色地面 */
+        z-index: -2;
+        transform-style: preserve-3d;
+        box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5) inset;
+    }
+
+    /* 404信息展示部分的样式，类似游戏中的方块风格 */
+  .minecraft-404-content {
+        background-color: #555555;
+        /* 深灰色方块背景，类似游戏中的建筑方块颜色 */
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        color: white;
+        z-index: -1;
+        transform: translateY(0) rotateX(10deg);
+        transition: transform 0.3s ease;
+    }
+
+  .minecraft-404-content:hover {
+        transform: translateY(-10px) rotateX(10deg);
+    }
+
+  .minecraft-404-title {
+        font-size: 80px;
+        margin: 0;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        text-transform: uppercase;
+    }
+
+  .minecraft-404-text {
+        font-size: 20px;
+        margin: 0;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+  .minecraft-link {
+        color: #0099ff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+  .minecraft-link:hover {
+        color: #0077cc;
+    }
+
+    /* 《我的世界》风格的装饰元素样式，云朵相关样式修改开始 */
+  .minecraft-cloud {
+        position: absolute;
+        top: 20vh; /* 调整云朵的初始垂直位置，使其更明显 */
+        left: -40px;
+        width: 80px; /* 增大云朵的宽度，使其更易被看到 */
+        height: 40px; /* 增大云朵的高度，使其更易被看到 */
+        background-color: white;
+        border-radius: 50%;
+        opacity: 0.9; /* 提高云朵的透明度，使其更清晰 */
+        z-index: 0;
+        animation: cloudAnimation 20s ease-in-out infinite;
+        transform-style: preserve-3d;
+    }
+
+    /* 新增不同大小的云朵样式类，可根据需要添加更多样式变化 */
+  .minecraft-cloud-smaller {
+        width: 60px;
+        height: 30px;
+        top: 30vh;
+        left: -20px;
+        animation-duration: 25s;
+        z-index: 0;
+    }
+
+  .minecraft-cloud-larger {
+        width: 100px;
+        height: 50px;
+        top: 10vh;
+        left: -60px;
+        animation-duration: 18s;
+        z-index: 0;
+    }
+
+    /* 云朵动画关键帧修改，使其从左侧运动到右侧 */
+    @keyframes cloudAnimation {
+        0% {
+            left: -40px;
+            transform: translateX(0) translateY(0) rotateY(0);
+        }
+
+        50% {
+            left: 50vw;
+            transform: translateX(0) translateY(-5px) rotateY(5deg);
+        }
+
+        100% {
+            left: 100vw;
+            transform: translateX(0) translateY(0) rotateY(0);
+        }
+    }
+    /* 《我的世界》风格的装饰元素样式，云朵相关样式修改结束 */
+
+    /* 太阳元素样式 */
+  .minecraft-sun {
+        position: absolute;
+        top: 50vh;
+        left: -40px;
+        width: 40px;
+        height: 40px;
+        background-color: #ffcc00;
+        border-radius: 50%;
+        box-shadow: 0 0 20px #ffcc00;
+        z-index: -1;
+        animation: sunAnimation 60s linear infinite;
+        transform-style: preserve-3d;
+    }
+
+    @keyframes sunAnimation {
+        0% {
+            top: 50vh;
+            left: -40px;
+            opacity: 0;
+        }
+
+        25% {
+            top: 30vh;
+            left: 25vw;
+            opacity: 0.3;
+        }
+
+        50% {
+            top: 10vh;
+            left: 50vw;
+            opacity: 0.6;
+        }
+
+        75% {
+            top: 30vh;
+            left: 75vw;
+            opacity: 0.9;
+        }
+
+        100% {
+            top: 50vh;
+            left: 100vw;
+            opacity: 0;
+        }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 整体页面容器 -->
+  <div class="minecraft-404-container">
+    <!-- 背景部分，模拟《我的世界》的天空和地面 -->
+    <div class="minecraft-sky"></div>
+    <div class="minecraft-ground"></div>
+    <!-- 太阳元素 -->
+    <div class="minecraft-sun"></div>
+    <!-- 多种云朵元素，添加了不同大小和初始位置的云朵 */!--> 
+    <div class="minecraft-cloud"></div>
+    <div class="minecraft-cloud-smaller"></div>
+    <div class="minecraft-cloud-larger"></div>
+    <!-- 404信息展示部分，类似游戏中的方块风格 -->
+    <div class="minecraft-404-content">
+      <h1 class="minecraft-404-title">404</h1>
+      <p class="minecraft-404-text">哎呀，你好像迷路了！这里好像没有你要找的东西哦。/</p>
+      <p class="minecraft-404-text">要不试试回到 <a href="./index.html" class="minecraft-link">首页</a> 重新探索一下呢？</p>
+    </div>
+
+    <!-- 一些《我的世界》风格的装饰元素，比如云朵、树木等（这里简单示例） -->
+
+  </div>
+</body>
+
+</html>

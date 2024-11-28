@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的世界风格云朵移动示例</title>
+  <style>
+    /* 整体页面布局样式 */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #7fbfff; /* 类似《我的世界》天空的淡蓝色背景 */
+      overflow: hidden; /* 隐藏页面滚动条，营造整体氛围 */
+    }
+
+    /* 云朵容器样式 */
+  .minecraft-cloud-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        perspective: 800px;
+    }
+
+    /* 《我的世界》风格的云朵样式 */
+  .minecraft-cloud {
+        position: absolute;
+        top: 20vh; /* 云朵初始垂直位置，可以根据需要调整 */
+        left: -40px; /* 初始位置在左侧 */
+        width: 80px; /* 云朵宽度 */
+        height: 40px; /* 云朵高度 */
+        background-color: white;
+        border-radius: 50%;
+        opacity: 0.9;
+        z-index: 1; /* 设置较高的z-index，使其位于上层 */
+        animation: cloudAnimation 20s ease-in-out infinite; /* 定义云朵移动动画 */
+        transform-style: preserve-3d;
+    }
+
+    /* 云朵动画关键帧 */
+    @keyframes cloudAnimation {
+        0% {
+            left: -40px;
+            transform: translateX(0) translateY(0) rotateY(0);
+        }
+
+        50% {
+            left: 50vw;
+            transform: translateX(0) translateY(-5px) rotateY(5deg);
+        }
+
+        100% {
+            left: 100vw;
+            transform: translateX(0) translateY(0) rotateY(0);
+        }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 云朵容器 -->
+  <div class="minecraft-cloud-container">
+    <!-- 云朵元素 -->
+    <div class="minecraft-cloud"></div>
+  </div>
+</body>
+
+</html>
